@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment</title> 
+  <style>
+    /* Reset and Basic Styling */
+    :root {
+      --color-primary: #0A2540; /* Dark Navy */
+      --color-accent: #FFD700;  /* Gold */
+      --color-background: #f4f4f4;
+      --color-text-light: #ffffff;
+      --color-text-dark: #333333;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--color-background);
+      color: var(--color-text-dark);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Align to the top initially */
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    /* Payment Container Styling */
+    .payment-container {
+      background-color: var(--color-primary);
+      color: var(--color-text-light);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 420px; /* Max width for desktop/tablet */
+      margin-top: 5vh; /* Center vertically on large screens, push down slightly on mobile */
+      transition: all 0.3s ease;
+    }
+
+    /* Headings */
+    h2 {
+      text-align: center;
+      margin-top: 0;
+      color: var(--color-accent);
+      font-size: 1.8rem;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    /* Order Details */
+    .payment-container p {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      padding: 5px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+
+    #orderId, #amount {
+      font-weight: 600;
+      color: var(--color-accent);
+    }
+
+    /* Form Elements (Label and Select) */
+    label {
+      display: block;
+      font-size: 1rem;
+      margin-top: 15px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    #paymentMethod {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 30px;
+      border: 2px solid var(--color-accent);
+      border-radius: 8px;
+      background-color: #1a3c63; /* Slightly lighter shade of primary for contrast */
+      color: var(--color-text-light);
+      font-size: 1rem;
+      appearance: none; /* Hide default dropdown arrow */
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      transition: border-color 0.3s;
+      cursor: pointer;
+    }
+
+    #paymentMethod:focus {
+      outline: none;
+      border-color: #fff;
+    }
+    
+    /* Button Styling */
+  #payBtn {
+    padding: 0.7rem 1.5rem;
+    border: 2px solid #0A2540;
+    background: #FFD700;
+    color: #0A2540;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+    font-size: 20px;
+    width: 100%;
+}
+
+#payBtn:hover {
+    background: #cfb310;
+    color:  #0A2540;
+}
+
+
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+      body {
+        align-items: center; /* Center vertically on larger screens */
+      }
+      .payment-container {
+        padding: 40px;
+        margin-top: 0;
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <div class="payment-container">
+    <h2>Complete Your Payment</h2>
+    <p>Order ID: <span id="orderId"></span></p>
+    <p>Amount: <span id="amount"></span></p>
+
+    <label>Choose Payment Method:</label>
+    <select id="paymentMethod">
+      <option value="mobile_money">Mobile Money</option>
+      <option value="card">Card</option>
+    </select>
+
+    <button id="payBtn">Pay Now</button>
+  </div>
+    <script src="https://js.paystack.co/v1/inline.js"></script><!-- Paystack SDK -->
+  <script src="payment.js"></script>
+</body>
+</html>

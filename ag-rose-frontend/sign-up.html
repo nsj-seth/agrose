@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title>Customer Signup</title>
+  <style>
+    :root {
+      --primary: #0A2540;
+      /* Deep Navy */
+      --accent: #FFD700;
+      /* Gold */
+      --bg: #f9fafb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      background: #0A2540;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+      color: var(--text)
+    }
+
+    .card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(10, 37, 64, 0.1);
+      padding: 32px;
+      border-top: 5px solid var(--accent)
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 22px;
+      color: var(--primary);
+      text-align: center
+    }
+
+    p.lead {
+      text-align: center;
+      margin-bottom: 24px;
+      color: var(--muted)
+    }
+
+    form {
+      display: grid;
+      gap: 14px
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--primary)
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: border-color .2s
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2)
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical
+    }
+
+    .row {
+      display: flex;
+      gap: 14px
+    }
+
+    .row>* {
+      flex: 1
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 10px
+    }
+
+    button {
+      background: var(--primary);
+      color: #fff;
+      border: 0;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, transform .1s
+    }
+
+    button:hover {
+      background: #132c52;
+      transform: translateY(-1px)
+    }
+
+    button[disabled] {
+      opacity: .6;
+      cursor: not-allowed
+    }
+
+    .secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary)
+    }
+
+    .secondary:hover {
+      background: var(--primary);
+      color: #fff
+    }
+
+    .msg {
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      text-align: center
+    }
+
+    .msg.success {
+      background: #ECFDF5;
+      color: #065F46
+    }
+
+    .msg.error {
+      background: #FEF3F2;
+      color: #991B1B
+    }
+
+    .muted {
+      font-size: 13px;
+      color: var(--muted)
+    }
+
+    #loginBtn {
+      margin-left: auto;
+      font-size: 14px;
+    }
+
+    .loginHere {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+    }
+
+.login-icon {
+    display: block;
+    font-size: 80px;              
+    color: #FFD700;               
+    background: #0A2540;          
+    width: 120px;                  
+    height: 120px;
+    line-height: 120px;          
+    text-align: center;           
+    margin: 0 auto 20px auto;     
+    border-radius: 50%;           
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2); 
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.login-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+}
+
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <i class="fa-solid fa-circle-user login-icon"></i>
+
+    <h1>Customer Signup</h1>
+    <p class="lead">Create your AG Rose account below</p>
+    <div style="margin-left:auto; text-align: center;" class="muted">All fields required</div>
+
+    <div id="feedback" aria-live="polite"></div>
+
+    <form id="signupForm">
+      <div>
+        <label for="name">Full Name</label>
+        <input id="name" name="name" type="text" required />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required />
+      </div>
+      <div class="row">
+        <div>
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" required />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required />
+        </div>
+      </div>
+      <div>
+        <label for="address">Address</label>
+        <textarea id="address" name="address" required></textarea>
+      </div>
+
+      <div class="actions">
+        <button id="submitBtn" type="submit">Create Account</button>
+        <button id="resetBtn" type="button" class="secondary">Reset</button>
+        <div id="loginBtn">
+          <p>Already have an account? <a href="login.html" class="loginHere">Login here</a></p>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <div id="notification" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
+
+  <script>
+    const API_URL = 'http://localhost/ag-rose-backend/api/customers/register.php';
+
+    const form = document.getElementById('signupForm');
+    const feedback = document.getElementById('feedback');
+    const submitBtn = document.getElementById('submitBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function showMessage(text, type = 'success') {
+      feedback.innerHTML = `<div class="msg ${type}">${text}</div>`;
+    }
+
+    resetBtn.addEventListener('click', () => {
+      form.reset();
+      feedback.innerHTML = '';
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      feedback.innerHTML = '';
+
+      const payload = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        password: form.password.value,
+        address: form.address.value.trim()
+      };
+
+      if (!payload.name || !payload.email || !payload.phone || !payload.password || !payload.address) {
+        showMessage('Please fill all fields.', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.status === 'success') {
+          showMessage(data.message, 'success');
+          form.reset();
+          window.location.href = 'login.html';
+        } else {
+          showMessage(data.message, 'error');
+        }
+      } catch (err) {
+        showMessage('Network or server error: ' + err.message, 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Create Account';
+      }
+    });
+  </script>
+</body>
+
+</html>
